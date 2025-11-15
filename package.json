@@ -17,15 +17,15 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.0.0-rc.30",
-    "@strapi/plugin-users-permissions": "5.0.0-rc.30",
-    "@strapi/strapi": "5.0.0-rc.30",
+    "@strapi/plugin-users-permissions": "^5.31.0",
+    "@strapi/strapi": "^5.31.0",
     "better-sqlite3": "9.4.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "strapi-plugin-populate-deep": "^3.0.1",
     "styled-components": "^6.0.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"

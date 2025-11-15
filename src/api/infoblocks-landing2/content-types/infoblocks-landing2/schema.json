@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "info_blocks_landings",
+  "collectionName": "infoblocks_landing2s",
   "info": {
-    "singularName": "info-blocks-landing",
-    "pluralName": "info-blocks-landings",
-    "displayName": "InfoBlocks Landing",
-    "description": ""
+    "singularName": "infoblocks-landing2",
+    "pluralName": "infoblocks-landing2s",
+    "displayName": "Infoblocks Landing2"
   },
   "options": {
     "draftAndPublish": true
@@ -14,7 +13,7 @@
   "attributes": {
     "info_blocks": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::info-block.info-block"
     }
   }
