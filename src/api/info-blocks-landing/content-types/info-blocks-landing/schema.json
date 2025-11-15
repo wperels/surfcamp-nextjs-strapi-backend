@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "info_blocks_landings",
+  "info": {
+    "singularName": "info-blocks-landing",
+    "pluralName": "info-blocks-landings",
+    "displayName": "InfoBlocks Landing",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "info_blocks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::info-block.info-block"
+    }
+  }
+}

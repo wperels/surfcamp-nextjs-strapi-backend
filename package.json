@@ -1,0 +1,36 @@
+{
+  "name": "surfcamp-nextjs-strapi-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "deploy": "strapi deploy",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "db:backup": "node scripts/backup-db.js",
+    "db:list-backups": "ls -lh .tmp/backups/ | tail -n +2",
+    "git:setup": "chmod +x .git/hooks/pre-commit && echo '✓ Git hooks configured'",
+    "git:log": "git log --oneline src/",
+    "git:diff": "git diff src/"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.0.0-rc.30",
+    "@strapi/plugin-users-permissions": "5.0.0-rc.30",
+    "@strapi/strapi": "5.0.0-rc.30",
+    "better-sqlite3": "9.4.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "2be4181d-a5b0-4ca7-8137-d1ac13eef755"
+  }
+}
