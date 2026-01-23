@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "infoblocks_experience2s",
+  "info": {
+    "singularName": "infoblocks-experience2",
+    "pluralName": "infoblocks-experience2s",
+    "displayName": "Infoblocks Experience2"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "info_blocks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::info-block.info-block"
+    }
+  }
+}

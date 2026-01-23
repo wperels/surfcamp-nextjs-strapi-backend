@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_blog_article_paragraph_with_images",
+  "info": {
+    "displayName": "paragraphWithImage"
+  },
+  "options": {},
+  "attributes": {
+    "paragraph": {
+      "type": "blocks",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isLandscape": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "imageShowsRight": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "imageCaption": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

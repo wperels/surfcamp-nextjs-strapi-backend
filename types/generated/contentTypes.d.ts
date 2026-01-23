@@ -430,26 +430,80 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCampCamp extends Struct.CollectionTypeSchema {
-  collectionName: 'camps';
+export interface ApiBlogArticleBlogArticle extends Struct.CollectionTypeSchema {
+  collectionName: 'blog_articles';
   info: {
-    displayName: 'camp';
-    pluralName: 'camps';
-    singularName: 'camp';
+    displayName: 'Blog Article';
+    pluralName: 'blog-articles';
+    singularName: 'blog-article';
   };
   options: {
     draftAndPublish: true;
+  };
+  attributes: {
+    articleContent: Schema.Attribute.DynamicZone<
+      [
+        'blog-article.headline',
+        'blog-article.paragraph-with-image',
+        'blog-article.paragraph',
+        'blog-article.landscape-image',
+      ]
+    > &
+      Schema.Attribute.Required;
+    author: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    excerpt: Schema.Attribute.Text & Schema.Attribute.Required;
+    featuredImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    headline: Schema.Attribute.String & Schema.Attribute.Required;
+    isHighlightArticle: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blog-article.blog-article'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEventEvent extends Struct.CollectionTypeSchema {
+  collectionName: 'events';
+  info: {
+    displayName: 'Event';
+    pluralName: 'events';
+    singularName: 'event';
+  };
+  options: {
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Blocks;
+    endDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::camp.camp'> &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    participants: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::participant.participant'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    sharedPrice: Schema.Attribute.Integer & Schema.Attribute.Required;
+    singlePrice: Schema.Attribute.Integer & Schema.Attribute.Required;
+    startingDate: Schema.Attribute.Date & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -491,14 +545,13 @@ export interface ApiInfoBlockInfoBlock extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiInfoblocksLandingInfoblocksLanding
+export interface ApiInfoblocksExperienceInfoblocksExperience
   extends Struct.SingleTypeSchema {
-  collectionName: 'infoblocks_landings';
+  collectionName: 'infoblocks_experiences';
   info: {
-    description: '';
-    displayName: 'Infoblocks Landing';
-    pluralName: 'infoblocks-landings';
-    singularName: 'infoblocks-landing';
+    displayName: 'Infoblocks Experience';
+    pluralName: 'infoblocks-experiences';
+    singularName: 'infoblocks-experience';
   };
   options: {
     draftAndPublish: true;
@@ -514,7 +567,39 @@ export interface ApiInfoblocksLandingInfoblocksLanding
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::infoblocks-landing.infoblocks-landing'
+      'api::infoblocks-experience.infoblocks-experience'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInfoblocksExperience2InfoblocksExperience2
+  extends Struct.SingleTypeSchema {
+  collectionName: 'infoblocks_experience2s';
+  info: {
+    displayName: 'Infoblocks Experience2';
+    pluralName: 'infoblocks-experience2s';
+    singularName: 'infoblocks-experience2';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    info_blocks: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::info-block.info-block'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::infoblocks-experience2.infoblocks-experience2'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -549,6 +634,70 @@ export interface ApiInfoblocksLanding2InfoblocksLanding2
       'api::infoblocks-landing2.infoblocks-landing2'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNewsletterSignupNewsletterSignup
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'newsletter_signups';
+  info: {
+    displayName: 'Newsletter Signup';
+    pluralName: 'newsletter-signups';
+    singularName: 'newsletter-signup';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::newsletter-signup.newsletter-signup'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParticipantParticipant extends Struct.CollectionTypeSchema {
+  collectionName: 'participants';
+  info: {
+    displayName: 'Participant';
+    pluralName: 'participants';
+    singularName: 'participant';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    isGeneralInterest: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    lastName: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::participant.participant'
+    > &
+      Schema.Attribute.Private;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1066,10 +1215,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::camp.camp': ApiCampCamp;
+      'api::blog-article.blog-article': ApiBlogArticleBlogArticle;
+      'api::event.event': ApiEventEvent;
       'api::info-block.info-block': ApiInfoBlockInfoBlock;
-      'api::infoblocks-landing.infoblocks-landing': ApiInfoblocksLandingInfoblocksLanding;
+      'api::infoblocks-experience.infoblocks-experience': ApiInfoblocksExperienceInfoblocksExperience;
+      'api::infoblocks-experience2.infoblocks-experience2': ApiInfoblocksExperience2InfoblocksExperience2;
       'api::infoblocks-landing2.infoblocks-landing2': ApiInfoblocksLanding2InfoblocksLanding2;
+      'api::newsletter-signup.newsletter-signup': ApiNewsletterSignupNewsletterSignup;
+      'api::participant.participant': ApiParticipantParticipant;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
