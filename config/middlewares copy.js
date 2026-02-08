@@ -12,7 +12,7 @@ module.exports = [
             "'self'",
             'data:',
             'blob:',
-            'res.cloudinary.com',
+            'res.cloudinary.com', // Cloudinary CDN
           ],
           'media-src': [
             "'self'",
@@ -25,17 +25,7 @@ module.exports = [
       },
     },
   },
-  {
-    name: 'strapi::cors',
-    config: {
-      enabled: true,
-      origin: [
-        'http://localhost:3002',
-        'https://*.vercel.app', // Allow all Vercel preview deployments
-        'https://wp-nextjs-strapi-backend.onrender.com', // Add your production domain
-      ],
-    },
-  },
+  'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
