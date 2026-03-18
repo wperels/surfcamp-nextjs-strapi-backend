@@ -7,12 +7,12 @@
   "attributes": {
     "headline": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": false
     },
     "slug": {
       "type": "string",
-      "required": true
+      "required": false
     }
   },
   "config": {}

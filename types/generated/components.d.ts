@@ -6,8 +6,8 @@ export interface BlogArticleHeadline extends Struct.ComponentSchema {
     displayName: 'headline';
   };
   attributes: {
-    headline: Schema.Attribute.String & Schema.Attribute.Required;
-    slug: Schema.Attribute.String & Schema.Attribute.Required;
+    headline: Schema.Attribute.String;
+    slug: Schema.Attribute.String;
   };
 }
 

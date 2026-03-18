@@ -448,15 +448,14 @@ export interface ApiBlogArticleBlogArticle extends Struct.CollectionTypeSchema {
         'blog-article.paragraph',
         'blog-article.landscape-image',
       ]
-    > &
-      Schema.Attribute.Required;
-    author: Schema.Attribute.String & Schema.Attribute.Required;
+    >;
+    author: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    excerpt: Schema.Attribute.Text & Schema.Attribute.Required;
-    featuredImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    headline: Schema.Attribute.String & Schema.Attribute.Required;
+    excerpt: Schema.Attribute.Text;
+    featuredImage: Schema.Attribute.Media<'images'>;
+    headline: Schema.Attribute.String;
     isHighlightArticle: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -466,9 +465,7 @@ export interface ApiBlogArticleBlogArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+    slug: Schema.Attribute.String & Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

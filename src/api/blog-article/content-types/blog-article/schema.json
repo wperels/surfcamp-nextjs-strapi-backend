@@ -13,28 +13,28 @@
   "attributes": {
     "headline": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "excerpt": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "featuredImage": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
     },
     "slug": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": true
     },
     "author": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "isHighlightArticle": {
       "type": "boolean",
@@ -48,7 +48,7 @@
         "blog-article.paragraph",
         "blog-article.landscape-image"
       ],
-      "required": true
+      "required": false
     }
   }
 }
